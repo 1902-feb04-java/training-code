@@ -1,14 +1,171 @@
+<!-- HTML syntax for comments -->
+<!-- Ctrl+/ for toggle comment/uncomment -->
+
+
+<!-- the "doctype", document type declaration -->
+<!-- the doctype for HTML 5 is just "<!DOCTYPE html>" -->
+<!--
+with no doctype, probably going to assume some legacy/
+compatibility old HTML behavior
+-->
 <!DOCTYPE html>
+<!-- HTML element -->
 <html>
+<!-- HEAD element, for metadata, data about the
+document's contents -->
 <head>
-    <meta charset="utf-8" />
+    <!-- charset = character set -->
+    <!-- ASCII encoding baseline -->
+    <!-- Unicode is a namespace of characters -->
+    <!-- "UTF-8" is the standard encoding for Unicode -->
+    <meta charset="utf-8" /> <!-- (self-closing tag) -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- title element is for the name of the tab/window -->
     <title>Page Title</title>
+    <!-- this defines some initial display parameters
+    for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- import an external stylesheet (CSS file) -->
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <!-- import an external script (JS file) -->
     <script src="main.js"></script>
+    <!-- <meta name="something"> -->
+    <!-- application-name --- name of webapp -->
+    <!-- author -->
+    <!-- description -->
+    <!-- keywords -->
+        <!-- used to be used for SEO - search-engine optimization -->
+    <!-- robots -->
 </head>
+<!-- BODY element, the page contents themselves -->
 <body>
-    Hello, world!
+    <!-- whitespace doesn't matter -->
+    <!-- it's CSS's job to control "layout" like this -->
+    Hello,           world!
+
+    Goodbye, world!
+    <!-- that appears as one line without extra space -->
+
+    <!-- paragraph -->
+    <p>Paragraph text</p>
+
+    <!-- section headers -->
+    <h1>Header 1</h1>
+    <h2>Header 2</h2>
+    <h6>Header 6</h6>
+
+    <!-- we usually don't close the img element -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Utf8webgrowth.svg/602px-Utf8webgrowth.svg.png">
+    <!-- we can point to remotely-hosted images at some http:// address -->
+    <!-- we can also point to locally-hosted images with a relative path -->
+    <!-- "alt" attribute for alternate text when image can't be loaded/displayed -->
+
+    <!-- <a> = "anchor" tag, for hyperlinks -->
+    <a href="https://google.com" target="_blank">Link to Google</a>
+    <!-- we have target="_blank" on links -->
+    <!-- for opening in a new tab -->
+
+    <ol> <!-- ordered list (numbered list) -->
+        <li> <!-- list item -->
+            item 1
+        </li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ol>
+    <ul> <!-- unordered list (bulleted list) -->
+        <li> <!-- list item -->
+            item 1
+        </li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
+    <!-- description list (dl tag)-->
+
+    <!-- br = line break -->
+    <p>One line <br> two line</p>
+
+    <p><em>Emphasize</em> text</p> <!-- (italic by default) -->
+    <p><strong>"Strong"</strong> text</p> <!-- boldface by default -->
+    <p><u>Underlined</u> text</p>
+
+    <blockquote>
+        Indented (by default) quotation of some kind
+    </blockquote>
+
+    <!-- in HTML, we have block elements and inline elements -->
+    <!-- block elements "own" their own vertical space -->
+        <!-- examples: p, h1, ol, li blockquote,  -->
+    <!-- inline element do not, happily occupy the same line -->
+        <!-- examples: br, em, strong, u, img, a -->
+
+    <div>
+        div is a generic block element for anything that doesn't already have a tag defined
+    </div>
+    <span>span is a generic inline element for when there's no tag for that</span>
+
+    <table>
+        <thead>
+            <tr> <!-- table row -->
+                <th>column 1</th> <!-- table header cell -->
+                <th>column 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>value 1</td> <!-- "table data" (cell) -->
+                <td>value 2</td>
+            </tr>
+            <tr>
+                <td>value 3</td>
+                <td>value 4</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- because VS Code is saving this file as UTF-8 -->
+    <!-- AND because it's declared charset is UTF-8 -->
+    <p>chữ nôm</p>
+    <p></p> <!-- how do i have a ">" character? -->
+    <!-- character references -->
+    <!-- tell the browser to render a character without -->
+    <!-- literally having it in this file -->
+    <p>&lt;</p> <!-- "lt" for "less than" -->
+    <p>&gt;</p> <!-- "gt" for "greater than" -->
+    <p>&amp;</p> <!-- "amp" for "ampersand" -->
+    <!-- sometimes called "HTML codes" -->
+    <p>&copy; ©</p>
+    <!-- often you should just put the character directly in the HTML -->
+    <!-- except for whitespace like &nbsp; (non-breaking space) -->
+    &#1289; <!-- decimal unicode reference -->
+    &#x20AB; <!-- hex unicode reference -->
+
+    <select> <!-- "select list" - dropdown list -->
+        <option>option 1</option>
+        <option>option 2</option>
+        <option>option 3</option>
+    </select>
+
+    <!-- some new elements in HTML 5: -->
+    <video ></video>
+    <audio></audio>
+    <!-- replace plugins like Flash with native A/V support -->
+    <!-- can specify more than one source file -->
+    <!-- with different codecs, let each browser download the one it can play -->
+    <!-- transcription support -->
+
+    <canvas></canvas>
+    <!-- area of screen to draw 'graphics primitives' onto, allowing some dynamic behavior -- like for "Flash games" -->
+
+    <!-- accessibility big focus for HTML 5 -->
+    <!-- e.g. many ARIA attributes to help screen readers etc. -->
+
+    <!-- <div class="section"> -->
+    <!-- block elements with a structural meaning -->
+    <section></section>
+    <article></article>
+    <header></header>
+    <footer></footer>
+    <aside></aside>
+    <nav></nav>
 </body>
 </html>
