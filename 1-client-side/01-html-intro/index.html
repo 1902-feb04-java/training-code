@@ -167,5 +167,53 @@ document's contents -->
     <footer></footer>
     <aside></aside>
     <nav></nav>
+
+    <!-- forms -->
+    <!-- basiC HTTP, you have GET method and POST method -->
+    <!-- GET requests have only a URL -->
+    <!-- typically, forms use POST, and send key-value -->
+    <!-- pairs to the server in the HTTP request body. -->
+    <form method="GET" action="https://google.com/search">
+        <!-- input elements provide a key-value pair -->
+        <!-- to the form as a whole to be submitted -->
+        <!-- the key will be from the "name" attr. -->
+        <input type="text" name="q">
+        <!-- naming this one "q" because that's what -->
+        <!-- google uses. -->
+        <input type="submit">
+    </form>
+
+    <form method="POST">
+        <label for="num">Enter number: </label>
+        <input type="number" name="num" id="num">
+
+        <label>Enter true/false:
+            <input type="checkbox" name="bool">
+        </label>
+
+
+        <!-- HTML shorthand - for an attribute without -->
+        <!-- a value, the value is the attribuate -->
+        <input type="text" name="username" placeholder="Username" required minlength="6">
+        <br>
+        <input type="password" placeholder="Password">
+
+        <input type="range" min="0" max="1000">
+
+        <input type="date">
+
+        <input type="color">
+
+        <input type="file">
+
+        <label>option 1:
+            <input type="radio" name="which" value="1">
+        </label>
+        <label>option 2:
+            <input type="radio" name="which" value="2">
+        </label>
+
+        <input type="submit">
+    </form>
 </body>
 </html>
