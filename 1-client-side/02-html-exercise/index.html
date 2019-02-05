@@ -65,9 +65,9 @@
 
     <h2>Sign Up!</h2>
     <form action="#" enctype="text/plain" method="post">
-        <label>Name: <input name="name" type="text"></label>
+        <label>Name: <input name="name" type="text" required></label>
         <br />
-        <label>Email: <input name="email" type="email"></label>
+        <label>Email: <input name="email" type="email" required></label>
         <br />
         <label>Location:
             <select name="location">
@@ -79,9 +79,9 @@
         <fieldset>
             <legend>Gender:</legend>
             <label for="female">Female</label>
-            <input name="gender" id="female" value="female" type="radio">
+            <input name="gender" id="female" value="female" type="radio" required>
             <label for="male">Male</label>
-            <input name="gender" id="male" value="male" type="radio">
+            <input name="gender" id="male" value="male" type="radio" required>
         </fieldset>
         <br />
         <label>Experience:
