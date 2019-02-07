@@ -54,4 +54,56 @@ window.addEventListener('DOMContentLoaded', () => {
         // we'll insert it into the DOM tree (specifically, at the end of the body)
         document.body.appendChild(footer);
     });
+
+    let table = document.getElementById('the-table');
+
+    // a listener on the first cell (bubbling)
+    table.rows[0].cells[0].addEventListener('click', printEventDetails);
+    // a listener on the whole table (bubbling)
+    table.addEventListener('click', printEventDetails);
+
+    // pass third parameter "true" (overriding default false)
+    //   to set the handler to capturing mode.
+    // a second listener on the whole table (capturing)
+    table.addEventListener('click', printEventDetails, true);
+
+    // events, bubbling vs capturing:
+    //   http://javascript.info/article/bubbling-and-capturing/eventflow@2x.png
+
+
 });
+
+function printEventDetails(event) {
+    // if your event handlers take an argument, it will be set to
+    // the event object.
+
+    // type is the name of the event, e.g. 'click'
+    console.log(`event.type: ${event.type}`);
+    // target is the element that fired the event originally.
+    console.log(`event.target: ${event.target}`);
+    // currentTarget is the element that this event handler is registered on.
+    console.log(`event.currentTarget: ${event.currentTarget}`);
+    // "this" is bound to the same as currentTarget (unless this is an arrow function)
+    console.log(`this: ${this}`);
+    console.log('');
+
+    event.stopPropagation();
+
+    // methods available on the event object:
+
+    //  - preventDefault()
+    //      browser has default event handlers - e.g.
+    //              click on a form button submits,
+    //              pressing enter on a form field also submits
+    //              clicking on a link navigates to that page
+    //      preventDefault lets us stop that default behavior from occurring.
+
+    //  - stopPropagation()
+    //      this switches off event handlers on elements that come later in the sequence of capturing, target, bubbling phase, etc.
+
+    //  - stopImmediatePropagation()
+            // this switches off all subsequent handlers of this event,
+            // even ones on the same element (currentTarget).
+
+    //  using these stopPropagation ones is generally bad practice
+}
