@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // we'll write a getJoke to make a request to the joke API
         getJoke(text => {
             // this code runs when the request returns successfully
-            jokeHeader.textContent = text;
+            jokeHeader.innerHTML = text;
         });
     });
 
