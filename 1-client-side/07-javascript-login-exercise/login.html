@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="login.js"></script>
+</head>
+
+<body>
+    <form id="loginForm">
+        <div>
+            <label for="inputUsername">Username</label>
+            <input type="text" id="inputUsername" placeholder="Username" required autofocus pattern="[a-zA-Z0-9]+" title="only letters and numbers">
+        </div>
+
+        <div>
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" placeholder="Password" required>
+            <!-- "required" means the form can't submit -->
+            <!-- if it's empty. -->
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
