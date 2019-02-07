@@ -36,7 +36,7 @@ console.log('5');
 function getJoke(onSuccess, onFailure = console.log) {
     // this object is provided by the browser to let us do AJAX
     // AJAX stands for Asynchronous JavaScript and XML
-    //   but what it means in practice is, HTTP requests via JavaScript.
+    //   but what it means in practice is, communication over network (usually HTTP) via JavaScript.
     let xhr = new XMLHttpRequest();
 
     // define what to do as the request-response lifecycle proceeds
@@ -77,3 +77,65 @@ function getJoke(onSuccess, onFailure = console.log) {
     // send the request
     xhr.send();
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    let textElement = document.getElementById('json-text');
+    let button = document.getElementById('json-button');
+
+    button.addEventListener('click', () => {
+        let jsonStr = textElement.value;
+
+        // have to declare before the try block, so it stays in scope afterwards.
+        let obj;
+        try {
+            obj = JSON.parse(jsonStr);
+        } catch (error) {
+            console.log(error);
+            return;
+        }
+
+        console.log(obj);
+
+        obj.name = 'Chuck';
+
+        let newJsonStr = JSON.stringify(obj);
+
+        textElement.value = newJsonStr;
+    });
+});
+
+// Fetch API, modern replacement for XMLHttpRequest object,
+// using ES6 promises, not all browsers support.
+document.addEventListener('DOMContentLoaded', () => {
+    let button = document.getElementById('joke-button-fetch');
+    let jokeHeader = document.getElementById('joke-text');
+
+    button.addEventListener('click', () => {
+        // certain functions return Promise objects.
+        // these represent a result that's not here yet
+        //  a promise can be resolved either to a success or a failure
+
+        // you call promise.then(onSuccess) to specify when to do when
+        // the promise is successfully fulfilled
+        // there's a second argument for failure
+
+        // if your then() function returns a promise itself...
+        // we can chain that with further "then()" calls.
+
+        fetch('http://api.icndb.com/jokes/random/')
+            // response.json() returns a promise of the whole response
+            //    body parsed from JSON.
+            // as soon as we get the response headers...
+            //   ...chain to that promise.
+            .then(response => response.json())
+            // when we get _that_ value, process it onto the page.
+            .then(data => {
+                jokeHeader.innerHTML = data.value.joke;
+            })
+            // using .catch() at the end of a promise chain will handle
+            // any errors along the way.
+            .catch(err => {
+                console.log(err)
+            });
+    });
+});
