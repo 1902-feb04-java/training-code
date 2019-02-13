@@ -77,6 +77,14 @@ ORDER BY COUNT(pt.track_id) DESC;
 
 -- 6. which track was purchased the most since 2010?
 --    (if there's a tie, return the first one alphabetically)
+SELECT t.name, COUNT(t.id)
+FROM invoice_lines AS il
+	JOIN invoices AS i ON il.invoice_id = i.id
+	JOIN tracks AS t ON il.track_id = t.id
+WHERE i.invoice_date > '2010-01-01'
+GROUP BY t.id, t.name
+ORDER BY COUNT(t.id) DESC, t.name
+LIMIT 1;
 
 -- 7. show the top five most purchased tracks of all time.
 
