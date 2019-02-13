@@ -1,0 +1,18 @@
+example breaking 2NF - region depends only on state, not city
+
+
+
+CityID    City   State    Region    SalesCount
+------
+
+candidate keys:
+1. CityID
+2. City + State
+
+normalized in 2NF (and also 3NF):
+                 (FK)
+CityID    City   State    SalesCount
+------
+
+State     Region
+-----
