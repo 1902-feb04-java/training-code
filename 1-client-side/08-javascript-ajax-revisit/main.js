@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
              return param1;
          }
 // 2. function expression
-         let myfunction = function(param1, param2) {
+         let myfunction = function (param1, param2) {
              return param1;
          }
 
