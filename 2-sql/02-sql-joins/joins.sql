@@ -49,18 +49,34 @@ WHERE genres.name = 'Rock';
 
 -- exercises
 
--- 1. show all invoices of customers from brazil.
+-- 1. show all invoices of customers from brazil (mailing address not billing).
+SELECT c.first_name || ' ' || c.last_name AS "Customer", c.address, c.country, i.*
+FROM invoices AS i
+	JOIN customers AS c ON i.customer_id = c.id
+WHERE c.country = 'Brazil';
 
 -- 2. show all invoices together
 --    with the name of the sales agent of each one.
+SELECT
+	invoices.*,
+	employees.first_name || ' ' || employees.last_name AS "Sales Agent"
+FROM invoices
+	JOIN customers ON invoices.customer_id = customers.id
+	JOIN employees ON customers.support_rep_id = employees.id;
 
 -- 3. show all playlists ordered by the total number of tracks they have.
+SELECT p.name, COUNT(pt.track_id)
+FROM playlist_track AS pt
+	JOIN playlists AS p ON pt.playlist_id = p.id
+GROUP BY p.name
+ORDER BY COUNT(pt.track_id) DESC;
 
 -- 4. which sales agent made the most in sales in 2009?
 
 -- 5. how many customers are assigned to each sales agent?
 
--- 6. which track was purchased the most in 2013?
+-- 6. which track was purchased the most since 2010?
+--    (if there's a tie, return the first one alphabetically)
 
 -- 7. show the top five most purchased tracks of all time.
 
