@@ -94,6 +94,19 @@ WHERE artists.id = (
 -- the others if you like, or better, write two answers, solving it either way.
 
 -- 1. which artists did not make any albums at all?
+SELECT a.name
+FROM artists AS a
+WHERE a.id NOT IN (
+		SELECT artist_id
+		FROM albums
+	);
+-- join + set op version
+SELECT artists.name
+FROM artists
+EXCEPT
+SELECT artists.name
+FROM artists
+	JOIN albums ON artists.id = albums.artist_id;
 
 -- 2. which artists did not record any tracks of the Latin genre?
 
