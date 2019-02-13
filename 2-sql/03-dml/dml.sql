@@ -52,7 +52,7 @@ SELECT * FROM genres;
 
 -- 3. update customer Aaron Mitchell's name to Robert Walter
 
--- 4. delete one of the customers you inserted.
+-- 4. delete one of the employees you inserted.
 
 -- 5. delete customer Robert Walter. you'll also need to remove all
 --    other rows in other tables that ultimately depend on his existence
