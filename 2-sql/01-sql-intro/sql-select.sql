@@ -111,8 +111,18 @@ FROM invoices
 WHERE invoice_date BETWEEN '2009-01-01' AND '2010-01-01';
 
 -- 6. how many line items were there for invoice #37?
+SELECT COUNT(id)
+FROM invoice_lines
+WHERE invoice_id = 37;
 
 -- 7. how many invoices per country?
+SELECT billing_country, COUNT(*)
+FROM invoices
+GROUP BY billing_country;
 
 -- 8. show total sales per country,
 --    ordered by highest sales first (figure out how to do that)
+SELECT billing_country, SUM(total) AS Sum
+FROM invoices
+GROUP BY billing_country
+ORDER BY Sum DESC;
