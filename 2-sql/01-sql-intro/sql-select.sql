@@ -62,13 +62,29 @@ ORDER BY state;
 
 -- 1. list all customers (full names, customer ID, and country)
 --    who are not in the US.
+SELECT id, first_name, last_name, country
+FROM customers
+WHERE country != 'USA';
+-- traditional SQL not-equals is <>, but these days we also have !=
 
 -- 2. list all customers from brazil.
+SELECT id, first_name, last_name, country
+FROM customers
+WHERE country != 'Brazil';
 
 -- 3. list all sales agents.
+SELECT *
+FROM employees
+WHERE title = 'Sales Support Agent';
 
 -- 4. show a list of all countries in billing addresses on invoices.
 --    (there should not be duplicates in the list, figure out how to do that)
+SELECT DISTINCT billing_country
+FROM invoices;
+-- (also works:)
+SELECT billing_country
+FROM invoices
+GROUP BY billing_country;
 
 -- 5. how many invoices were there in 2009, and what was the
 --    sales total for that year? what about 2011 (can use a separate query)?
