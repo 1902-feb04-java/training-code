@@ -63,3 +63,27 @@ WHERE t.id NOT IN (SELECT id FROM purchased_tracks);
 --   SOME (aka ANY)
 --   ALL
 
+-- if the subquery returns exactly one value (one column, one row),
+--   we can use any other operator or function with it: =, !=, <=, etc.
+
+-- for example..
+-- the artist who made the album with the longest title.
+SELECT artists.name
+FROM artists
+WHERE artists.id = (
+		SELECT a.artist_id
+		FROM albums AS a
+		WHERE LENGTH(a.title) >= ALL (SELECT LENGTH(albums.title) FROM albums)
+	);
+-- a better way to write that...
+SELECT artists.name
+FROM artists
+WHERE artists.id = (
+		SELECT a.artist_id
+		FROM albums AS a
+		ORDER BY LENGTH(a.title) DESC
+		LIMIT 1
+	);
+
+-- we can use LIMIT <n> clause at the end of a SELECT statement
+-- to limit the results returns
