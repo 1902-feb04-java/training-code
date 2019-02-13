@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
          let myfunction = (param1, param2) => {
              return param1;
          };
-// 5. method
+// 5. method (in an object literal, or a class)
          let myobj = {
              myfunction(param1, param2) {
                  return param1;
