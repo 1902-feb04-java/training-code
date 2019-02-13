@@ -52,7 +52,6 @@ ORDER BY state;
 -- single quotes are for string literals.
 -- double quotes are for identifiers (table names, column names, etc)
 --   if they have spaces in them.
--- brackets do the same thing as double quotes.
 
 -- Ctrl+/ will comment just like in VS Code
 -- Ctrl+Space triggers autocomplete of column names
@@ -88,6 +87,28 @@ GROUP BY billing_country;
 
 -- 5. how many invoices were there in 2009, and what was the
 --    sales total for that year? what about 2011 (can use a separate query)?
+SELECT
+	EXTRACT(YEAR FROM invoice_date) AS "Year",
+	SUM(total) AS "Sales Total",
+	COUNT(*) AS "Sales Count"
+FROM invoices
+GROUP BY EXTRACT(YEAR FROM invoice_date)
+ORDER BY EXTRACT(YEAR FROM invoice_date);
+
+-- (or, easier way, one query per year:)
+SELECT SUM(total)
+FROM invoices
+WHERE EXTRACT(YEAR FROM invoice_date) = 2009;
+-- (another way to work with the date)
+SELECT SUM(total)
+FROM invoices
+WHERE invoice_date >= '2009-01-01' AND invoice_date < '2010-01-01';
+--   we have a CAST function to convert between types, and often
+--   we rely on implicit conversions like there, from string to timestamp.
+-- we also have BETWEEN operator
+SELECT SUM(total)
+FROM invoices
+WHERE invoice_date BETWEEN '2009-01-01' AND '2010-01-01';
 
 -- 6. how many line items were there for invoice #37?
 
