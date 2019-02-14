@@ -48,6 +48,42 @@ SELECT * FROM us_restaurants;
 -- boolean type for true or false
 -- many other fancy specialized types for geometric objects, geographical locations
 
+-- some functions / behaviors in PostgreSQL to know
+--SELECT 1;
+--SELECT 1 + 1;
+--SELECT CURRENT_TIMESTAMP, LOCALTIMESTAMP, CURRENT_TIME, LOCALTIME;
+-- we can do explicit type conversions using CAST
+--SELECT CAST (123 AS VARCHAR);
+--SELECT EXTRACT(YEAR FROM CAST ('today' AS TIMESTAMP));
+--SELECT DATE_PART('month', CAST ('2018-06-01' AS TIMESTAMP)); -- another way to get parts
+--SELECT CAST ('today' AS TIMESTAMP) - CAST ('yesterday' AS TIMESTAMP);
+-- we can extract lots of parts of the dates and times
+-- and we can convert (for display) the time zone using AT TIME ZONE
+
+-- we have "scalar" (single-valued) variables... in pl/pgsql
+-- and table-valued variables...  in pl/pgsql
+
+-- string functions
+					 --   1234567
+SELECT POSITION('bc'  in 'abcdefg'); -- returns 2
+SELECT POSITION('def' in 'abcdefg'); -- returns 4
+SELECT UPPER('abc'); -- return 'ABC'
+SELECT LOWER('ABC'); -- return 'abc'
+SELECT '|' || TRIM(LEADING FROM '    abc    ') || '|';
+SELECT '|' || TRIM(TRAILING FROM '    abc    ') || '|';
+SELECT '|' || TRIM(BOTH FROM '    abc    ') || '|';
+SELECT LENGTH('abc'), CHAR_LENGTH('abc'); -- two ways to get string length
+SELECT REPLACE('Hello world world', 'world', 'Nick'); -- return 'Hello Nick Nick'
+-- in SQL, indexing is 1-based, not 0-based.
+
+-- we have a pattern-matching syntax used with LIKE operator
+-- % wildcard means "any number of any characters"
+SELECT first_name FROM customers
+WHERE first_name LIKE 'A%';
+-- _ wildcard means "one of any character"
+SELECT first_name FROM customers
+WHERE first_name LIKE 'A___andre';
+-- for anything more complicated, use SIMILAR TO
 
 -- triggers
 -- we can specify automatic behavior to run before, after, or in place of
