@@ -72,6 +72,19 @@ GROUP BY p.name
 ORDER BY COUNT(pt.track_id) DESC;
 
 -- 4. which sales agent made the most in sales in 2009?
+-- TODO: fix this
+SELECT id, first_name, last_name
+FROM employees JOIN customers ON customers.support_rep_id = employees.id
+	JOIN invoices ON invoices.customer_id = customers.id
+WHERE EXTRACT(YEAR FROM invoices.invoice_date) = 2009 AND id IN (
+SELECT
+	COUNT(employees.id),
+FROM employees JOIN customers ON customers.support_rep_id = employees.id
+	JOIN invoices ON invoices.customer_id = customers.id
+WHERE EXTRACT(YEAR FROM invoices.invoice_date) = 2009
+GROUP BY employees.id, employees.first_name, employees.last_name
+ORDER BY Sales DESC
+LIMIT 1;
 
 -- 5. how many customers are assigned to each sales agent?
 
@@ -89,3 +102,18 @@ LIMIT 1;
 -- 7. show the top five most purchased tracks of all time.
 
 -- 8. show the top three best-selling artists.
+
+-- 9. which customers have the same initials as at least one other customer?
+--    (see https://www.postgresql.org/docs/9.6/functions-string.html)
+-- join version
+SELECT c1.first_name, c1.last_name
+FROM customers AS c1 JOIN customers AS c2 ON
+	(SUBSTRING(c1.first_name, 1, 1) = SUBSTRING(c2.first_name, 1, 1) AND
+	 SUBSTRING(c1.last_name, 1, 1) = SUBSTRING(c2.last_name, 1, 1));
+-- subquery version
+SELECT first_name, last_name
+FROM customers
+WHERE (SUBSTRING(first_name, 1, 1) || SUBSTRING(last_name, 1, 1)) IN (
+	SELECT (SUBSTRING(first_name, 1, 1) || SUBSTRING(last_name, 1, 1))
+	FROM customers
+);

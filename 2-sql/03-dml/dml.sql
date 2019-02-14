@@ -51,9 +51,20 @@ SELECT * FROM genres;
 -- 2. insert two new records into the tracks table.
 
 -- 3. update customer Aaron Mitchell's name to Robert Walter
+UPDATE customers SET first_name = 'Robert', last_name = 'Walter'
+	WHERE first_name = 'Aaron' AND last_name = 'Mitchell';
 
 -- 4. delete one of the employees you inserted.
 
 -- 5. delete customer Robert Walter. you'll also need to remove all
 --    other rows in other tables that ultimately depend on his existence
 --    via foreign key relationships to get past the error.
+DELETE FROM invoice_lines
+	WHERE invoice_id IN (SELECT id FROM invoices
+		WHERE customer_id IN (SELECT id FROM customers
+			WHERE first_name = 'Robert' AND last_name = 'Walter'));
+DELETE FROM invoices
+	WHERE customer_id IN (SELECT id FROM customers
+			WHERE first_name = 'Robert' AND last_name = 'Walter');
+DELETE FROM customers
+	WHERE first_name = 'Robert' AND last_name = 'Walter';
