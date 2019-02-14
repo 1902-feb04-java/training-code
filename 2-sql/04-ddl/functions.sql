@@ -37,16 +37,33 @@ $$ LANGUAGE SQL;
 SELECT all_employees_before_1970(); -- stuffs whole employee into one column
 SELECT * FROM all_employees_before_1970(); -- expands employee back into his columns
 
--- CREATE FUNCTION employee_names() RETURNS
--- 	TABLE(first_name VARCHAR(20), last_name VARCHAR(20)) AS
--- $$
--- 	SELECT first_name, last_name
--- 	FROM employees;
--- $$ LANGUAGE SQL;
--- SELECT * FROM employee_names();
-													
+CREATE FUNCTION employee_names() RETURNS TABLE(
+	first_name VARCHAR(20),
+	last_name VARCHAR(20)
+) AS
+$$
+ 	SELECT first_name, last_name
+ 	FROM employees;
+$$ LANGUAGE SQL;
+SELECT * FROM employee_names();
+
+-- the $$ $$ syntax is actually a multi-line string literal
+CREATE OR REPLACE FUNCTION name_of_alpha_last_employee(
+	OUT first VARCHAR(20), OUT last VARCHAR(20)
+) AS
+$$
+	SELECT first_name, last_name
+	FROM employees 
+	ORDER BY last_name DESC, first_name DESC 
+	LIMIT 1;
+$$ LANGUAGE SQL;
+SELECT * FROM name_of_alpha_last_employee();
+
+-- the parameters are also accessible with names $1, $2, $3 etc
+-- so you don't need to give them names if you want to use those instead
+
 -- exercises
-													
+
 -- 1. create a function that returns the length of a track
 
 -- 2. create a function that returns the average total of all
@@ -65,3 +82,72 @@ SELECT * FROM all_employees_before_1970(); -- expands employee back into his col
 
 -- 7. create a function that, given an invoice id, will delete that
 --    invoice, including all associated invoice line items.
+
+-- PL/pgSQL functions support more procedural constructs like
+-- if-conditional, loop, try catch
+
+-- this function will be called whenever we want to suppress some row change
+CREATE OR REPLACE FUNCTION skip_row_operation_trigger() RETURNS trigger AS
+$$
+	BEGIN
+		-- RAISE lets us "throw exceptions"
+		RAISE 'deleting expensive invoice not allowed';
+	END;
+$$ LANGUAGE plpgsql;
+-- in a trigger function for BEFORE triggers, returning NULL
+-- halts the operation before it occurs.
+
+-- triggers
+-- we have them on INSERT, on UPDATE, or on DELETE
+-- also, BEFORE, AFTER, or INSTEAD OF (but INSTEAD OF only on views, not proper tables)
+-- also, row-level trigger (FOR EACH ROW) or statement-level (FOR EACH STATEMENT)
+DROP TRIGGER prevent_expensive_invoice_delete ON invoices;
+CREATE TRIGGER prevent_expensive_invoice_delete
+BEFORE DELETE
+ON invoices
+FOR EACH ROW
+WHEN (OLD.total > 20) -- total for invoice is > $20
+EXECUTE PROCEDURE skip_row_operation_trigger();
+
+-- inside a row-level trigger (including the function), we have access to 
+-- special variables OLD (for delete and update)
+-- and NEW (for insert and update)
+
+SELECT * FROM invoices ORDER BY total DESC;
+DELETE FROM invoice_lines WHERE invoice_id = 404;
+DELETE FROM invoices WHERE id = 404; -- prevented by trigger
+
+CREATE OR REPLACE FUNCTION update_last_updated() RETURNS trigger
+AS $$
+BEGIN
+	UPDATE rest_reviews.reviews
+	SET last_updated = 'now'
+	WHERE id = NEW.id;
+	RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER reviews_last_updated_insert ON rest_reviews.reviews;
+CREATE TRIGGER reviews_last_updated_insert
+AFTER INSERT
+ON rest_reviews.reviews
+FOR EACH ROW
+WHEN (pg_trigger_depth() = 0) -- prevent trigger recursion
+EXECUTE PROCEDURE update_last_updated();
+
+DROP TRIGGER reviews_last_updated_update ON rest_reviews.reviews;
+CREATE TRIGGER reviews_last_updated_update
+AFTER UPDATE
+ON rest_reviews.reviews
+FOR EACH ROW
+WHEN (pg_trigger_depth() = 0) -- prevent trigger recursion
+EXECUTE PROCEDURE update_last_updated();
+
+SELECT * FROM rest_reviews.reviews;
+INSERT INTO rest_reviews.reviews (reviewer, score, restaurant_id) VALUES
+('Nick', 7.5,
+ (SELECT id FROM rest_reviews.restaurants WHERE name = 'McDonalds' LIMIT 1)
+);
+UPDATE rest_reviews.reviews
+SET score = 8.0
+WHERE reviewer = 'Nick';
