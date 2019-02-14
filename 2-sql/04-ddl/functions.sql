@@ -47,9 +47,8 @@ SELECT * FROM all_employees_before_1970(); -- expands employee back into his col
 													
 -- exercises
 													
--- 1. create a function that returns the length of a
---    mediatype from the mediatype table
-													
+-- 1. create a function that returns the length of a track
+
 -- 2. create a function that returns the average total of all
 --    invoices
 
