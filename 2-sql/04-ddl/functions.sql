@@ -151,3 +151,47 @@ INSERT INTO rest_reviews.reviews (reviewer, score, restaurant_id) VALUES
 UPDATE rest_reviews.reviews
 SET score = 8.0
 WHERE reviewer = 'Nick';
+
+-- procedures only exist in PostgreSQL 11, they have no return,
+-- and they do allow transactions with BEGIN+COMMIT(+SAVEPOINT+ROLLBACK)
+-- unlike functions. otherwise
+DROP FUNCTION test_proc();
+CREATE OR REPLACE FUNCTION test_proc() RETURNS INTEGER
+AS $$
+-- optional DECLARE, plus BEGIN, plus END is a "block"
+-- blocks can be nested
+DECLARE
+	-- declare our variables
+	-- PostgreSQL does have variables, in the context of functions/procedures
+	value INTEGER;
+	value2 VARCHAR(20);
+	-- just like function parameters, we can have table-valued variables
+	-- row-valued variables etc.
+BEGIN
+	-- our statements
+	-- assignment :=
+	value := 600;
+	IF value < 10
+	THEN
+		value := 12;
+	ELSIF value > 100
+	THEN
+		value := 200;
+	END IF;
+	-- we have if, else if, else in pl/pgsql
+	-- we also have while loops
+	WHILE value > 100 LOOP
+		value = value - 60;
+	END LOOP;
+	RETURN value;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT test_proc();
+
+CREATE OR REPLACE FUNCTION test_func() RETURNS VOID AS
+$$
+	BEGIN
+		CALL test_proc();
+	END;
+$$ LANGUAGE plpgsql;
