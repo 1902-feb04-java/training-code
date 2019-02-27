@@ -1,0 +1,53 @@
+<web-app>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.html</location>
+	</error-page>
+
+	<display-name>Archetype Created Web Application</display-name>
+	<filter>
+		<filter-name>HelloFilter</filter-name>
+		<display-name>HelloFilter</display-name>
+		<description></description>
+		<filter-class>com.revature.HelloFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>HelloFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<context-param>
+		<param-name>favColor</param-name>
+		<param-value>blue</param-value>
+	</context-param>
+	
+	<servlet>
+		<servlet-name>HelloServlet</servlet-name>
+		<display-name>HelloServlet</display-name>
+		<description></description>
+		<servlet-class>com.revature.HelloServlet</servlet-class>
+		<init-param>
+			<param-name>user</param-name>
+			<param-value>Anonymous</param-value>
+			<description></description>
+		</init-param>
+	</servlet>
+	<servlet>
+		<servlet-name>CoolServlet</servlet-name>
+		<display-name>CoolServlet</display-name>
+		<description></description>
+		<servlet-class>com.revature.CoolServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloServlet</servlet-name>
+		<url-pattern>/HelloServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CoolServlet</servlet-name>
+		<url-pattern>/coolpage</url-pattern>
+	</servlet-mapping>
+</web-app>

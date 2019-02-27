@@ -1,0 +1,147 @@
+3-java/04-collection/target/
+3-java/01-intro/.classpath
+3-java/01-intro/.project
+3-java/01-intro/.settings/
+3-java/01-intro/target/
+3-java/03-io/.classpath
+3-java/03-io/.project
+3-java/03-io/.settings/
+3-java/03-io/target/
+3-java/04-collection/.classpath
+3-java/04-collection/.project
+3-java/04-collection/.settings/
+3-java/04-collection/.vscode/
+3-java/04-collection/target/
+3-java/05-mvc/.project
+3-java/05-mvc/.settings/
+4-web/01-webapp/.project
+4-web/01-webapp/.settings/
+4-web/01-webapp/target/
+3-java/05-mvc/.classpath
+3-java/05-mvc/target/
+4-web/01-webapp/.classpath
+4-web/01-webapp/target/
+
+
+# Created by https://www.gitignore.io/api/java,maven,eclipse,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=java,maven,eclipse,visualstudiocode
+
+### Eclipse ###
+
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# CDT- autotools
+.autotools
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+# Annotation Processing
+.apt_generated/
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+### Eclipse Patch ###
+# Eclipse Core
+.project
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Annotation Processing
+.apt_generated
+
+.sts4-cache/
+
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# End of https://www.gitignore.io/api/java,maven,eclipse,visualstudiocode
