@@ -1,0 +1,145 @@
+    1  exit
+    2  sudo yum update
+    3  pwd
+    4  cd /
+    5  ls
+    6  cd
+    7  pwd
+    8  mkdir projects
+    9  ls
+   10  echo $PATH
+   11  ls /bin mkdir
+   12  ls /sbin/
+   13  javac -version
+   14  java -version
+   15  sudo yum remove java
+   16  man yum
+   17  sudo yum search java
+   18  sudo yum install java-1.8.0-openjdk-devel -y
+   19  javac -version
+   20  man touch 
+   21  nano HelloWorld.java
+   22  vim
+   23  vim HelloWorld.java
+   24  ls
+   25  echo HelloWorld.java 
+   26  cat HelloWorld.java 
+   27  man cat
+   28  less HelloWorld.java 
+   29  javac HelloWorld.java 
+   30  ls
+   31  java HelloWorld
+   32  sudo yum search tomcat
+   33  sudo yum install tomcat8-webapps
+   34  sudo service start tomcat
+   35  sudo service tomcat start
+   36  sudo service tomcat8 start
+   37  sudo service tomcat8 stop
+   38  sudo service tomcat8 start
+   39  exit
+   40  sudo shutdown now
+   41  exit
+   42  ls
+   43  ls -a
+   44  ls -l
+   45  ls -l /bin
+   46  something
+   47  touch
+   48  /bin/touch
+   49  man ln
+   50  history
+   51  /bin/touch
+   52* sudo yum install git
+   53  sudo sudo yum install git
+   54  git
+   55  sudo yum search maven
+   56  sudo yum search mvn
+   57  http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+   58  wget http://mirror.cc.columbia.edu/pub/software/apache/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz
+   59  ls
+   60  tar
+   61  tar apache-maven-3.6.0-bin.tar.gz 
+   62  man tar
+   63  tar xvzf apache-maven-3.6.0-bin.tar.gz 
+   64  ls
+   65  tar xvf apache-maven-3.6.0-bin.tar.gz 
+   66  ls
+   67  ls apache-maven-3.6.0
+   68  ~/apache-maven-3.6.0/bin/mvn -v
+   69  mvn
+   70  ~/apache-maven-3.6.0/bin/mvn -v
+   71  echo $JAVA_HOME
+   72  export PATH=/home/ec2-user/apache-maven-3.6.0/bin:$PATH
+   73  mvn -v
+   74  ls
+   75  rm apache-maven-3.6.0-bin.tar.gz 
+   76  ls
+   77  mkdir HelloWorld && mv HelloWorld.* HelloWorld/
+   78  ls
+   79  ls HelloWorld/
+   80  mv HelloWorld/ HW/
+   81  ls
+   82  mv HW projects/HelloWorld
+   83  ls
+   84  ls projects/
+   85  cd projects/
+   86  git clone https://github.com/1902-feb04-java/training-code.git
+   87  cd training-code/4-web/01-webapp/
+   88  ls
+   89  mvn clean compile
+   90  ls
+   91  echo $CATALINA_HOME
+   92  history
+   93  ls /bin
+   94  ls /sbin
+   95  history
+   96  hereis
+   97  whereis tomcat8
+   98  ls /usr/bin
+   99  whereis tomcat8
+  100  whereis java
+  101  ls /usr/share/tomcat8/
+  102  ls /usr/share/tomcat8/bin
+  103  ls -l /usr/share/tomcat8/
+  104  mvn clean package
+  105  ls -l /usr/share/tomcat8/
+  106  ls target/*.jar
+  107  ls target/
+  108  cp target/01-simplewebapp-0.1.0.war /var/lib/tomcat8/webapps/
+  109  sudo cp target/01-simplewebapp-0.1.0.war /var/lib/tomcat8/webapps/
+  110  ls /var/lib/tomcat8/webapps/
+  111  sudo service tomcat8 restart
+  112  ls /var/lib/tomcat8/webapps/
+  113  cd ~/projects/
+  114  ls
+  115  cd training-code/
+  116  vim update.sh
+  117  ls
+  118  ls -l update.sh 
+  119  chmod +x update.sh 
+  120  ls -l update.sh 
+  121  update.sh 
+  122  ./update.sh 
+  123  whereis tomcat8
+  124  vim update.sh
+  125  ./update.sh 
+  126  vim update.sh
+  127  sudo ./update.sh 
+  128  sudo mvn -v
+  129  ./update.sh 
+  130  vim update.sh
+  131  ./update.sh 
+  132  man chron
+  133  man chrond
+  134  sudo yum search chron
+  135  chron
+  136  cron
+  137  sudo yum search cron
+  138  sudo yum install chronie
+  139  sudo yum install cronie
+  140  cronie
+  141  history
+  142  d
+  143  cd
+  144  cat .bash_history 
+  145  history >> history.txt
