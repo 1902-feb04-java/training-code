@@ -5,9 +5,9 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<property name="connection.url">jdbc:postgresql://mehrab.cvoui7q38caj.us-east-2.rds.amazonaws.com:5432/mehrab</property>
-		<property name="connection.username">mehrab</property>
-		<property name="connection.password">p4ssw0rd</property>
+		<property name="connection.url">jdbc:postgresql://<your-host-name>:5432/mehrab</property>
+		<property name="connection.username">user</property>
+		<property name="connection.password">password</property>
 		<property name="connection.driver_class">org.postgresql.Driver</property>
 		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 
