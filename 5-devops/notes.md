@@ -282,11 +282,6 @@ ACID is a set of rules to be respected whenever a transaction occures in a SQL d
 - @Id: maps a property in an entity as a primary key in the database
 - @Column: maps a property in an entity as a column in the database
 - @JoinColumn: maps a property in an entity as a foreign key in the database
-- Multiplicity
-  - @OneToOne
-  - @OneToMany: used on parent relation
-  - @ManyToOne: used on child relation
-  - @ManyToMany
 
 ```java
 //Student.java
@@ -302,6 +297,12 @@ public class Student(){
   private String studentName;
 }
 ```
+
+- Multiplicity
+  - @OneToOne
+  - @OneToMany: used on parent relation
+  - @ManyToOne: used on child relation
+  - @ManyToMany
 
 ```java
 @Entity
