@@ -405,3 +405,27 @@ private List<Employee> emps;
   - Strategies/Use cases:
     - Read_Only – good for app config, things that are never updated
     - Read_Write – for objects to be updated, only aware of changes through hibernate
+
+# Hibernate Inheritance
+– Table Per Hierarchy
+	– @DiscriminatorColumn
+	– @DiscriminatorValue
+	– Example
+		– Animal (id, name, cave)
+		– Bear (weight) extends Animal
+		– Bat (wingspan) extends Animal
+		– Animal table:
+			– id, name, cave, type, weight, wingspan (all nullable)
+			– In Animal.java: @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+– Table Per Subclass
+	– Example
+		– Animal table: id, name, cave
+		– Bear table: animal_id, weight
+		– Animal.java: @Inheritance(strategy=InheritanceType.JOINED)
+		– Bear.java: @PrimaryKeyJoinColumn
+– Table Per Class
+	– Example
+		– Animal table: id, name, cave
+		– Bear table: id, name, cave, weight
+		– Animal.java: @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+		– Bear.java @AttributeOverrides
