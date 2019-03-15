@@ -21,6 +21,9 @@ public class ArtistService {
 	}
 
 	public List<Artist> getArtists() {
-		return this.artistRepository.getAllArtists();
+		List<Artist> artists = this.artistRepository.getAllArtists();
+		System.out.println(artists);
+		//throw new RuntimeException();
+		return artists;
 	}
 }

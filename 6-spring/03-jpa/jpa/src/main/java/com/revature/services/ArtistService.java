@@ -18,4 +18,9 @@ public class ArtistService {
 	public List<Artist> getAll() {
 		return ar.findAll();
 	}
+	
+	@Transactional
+	public Artist postArtist(Artist a) {
+		return ar.save(a);
+	}
 }
