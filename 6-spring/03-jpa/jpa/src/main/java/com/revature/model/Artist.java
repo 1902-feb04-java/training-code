@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="artists")
@@ -14,6 +16,9 @@ public class Artist {
 	@SequenceGenerator(name="artists_seq", sequenceName="artists_id_seq", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="artists_seq")
 	private long id;
+	
+	@Pattern(regexp="[a-z-A-Z]*")
+	@Size(min=2, max=12)
 	private String name;
 
 	public long getId() {
