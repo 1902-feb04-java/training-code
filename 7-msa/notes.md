@@ -51,13 +51,13 @@
   * Success: 200-299 (HttpBinding)
   * Soap Fault: 500-599
   * Elements
-    * <faultCode>
-    * <soap-env:versionMismatch> - invalid namespace for env
-    * <soap-env:mustUnderstand> - immediate child of header element not understood
-    * <soap-env:client> - message was incorrectly formed
-    * <soap-env:Server> - error with server
-    * <faultString>
-    * <details>
+    * `<faultCode>`
+    * `<soap-env:versionMismatch>` - invalid namespace for env
+    * `<soap-env:mustUnderstand>` - immediate child of header element not understood
+    * `<soap-env:client>` - message was incorrectly formed
+    * `<soap-env:Server>` - error with server
+    * `<faultString>`
+    * `<details>`
     
 ### WSDL
   * Web Service Description Language
