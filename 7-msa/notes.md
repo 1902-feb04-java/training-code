@@ -1,4 +1,5 @@
-SOA – Service Oriented Architecture
+# Web Services
+## SOA – Service Oriented Architecture
   – Monolith architecture
   – Data access + Logic + Web
   – What if we broke it up into discrete layers/modules? Benefits include:
@@ -6,7 +7,7 @@ SOA – Service Oriented Architecture
     – Loose coupling
     – separation of concerns
 
-– SOAP
+## SOAP
   – “Expose” and “Consume” Web Services
   – Simple Object Access Protocol
   – Protocol for XML based communication across the Internet
@@ -15,11 +16,11 @@ SOA – Service Oriented Architecture
   – SOAP is pure XML and therefore language agnostic
   – Not tied to a specific transport protocol: HTTP, SMTP, FTP, MSNQ, IBM MQSeries, etc.
 
-– SOAP w/HTTP
+### SOAP w/HTTP
   – Messages sent within Http POST Requests
   – Http must set content type to text/xml
 
-– SOAP Message
+### SOAP Message
   – Envelope – (mandatory), defines start/end of message
   – Header – (optional), optional attributes to be used when processing message
   – Body – (mandatory), XML data with message to be sent
@@ -27,7 +28,11 @@ SOA – Service Oriented Architecture
   – Defined in default namespace
   – for SOAP – www.w3.org/2001/12/soap-envelope
   – for encoding and datatypes – www.w3.org/2001/12/soap-encoding
-  – Message Structure
+  – Envelope packaging contents of message
+  – Only one body element allowed
+  – Changing SOAP version requires change of envelope
+  – SOAP Header/Body != HTTP Header/Body: entire message goes inside Http Req/Resp body
+  #### Message Structure
   ```xml
     <xml version=“1.0”?>
     <soap-env:Envelope xmlns=soap-env=”www.w3.org/2001/12/soap-envelope” soap-env:encodingStyle=”www.w3.org/2001/12/soap-encoding”>
@@ -39,12 +44,8 @@ SOA – Service Oriented Architecture
       </soap-env:Body>
     </soap-env:Envelope>
   ```
-  – Envelope packaging contents of message
-  – Only one body element allowed
-  – Changing SOAP version requires change of envelope
-  – SOAP Header/Body != HTTP Header/Body: entire message goes inside Http Req/Resp body
 
-  – Faults
+  #### Faults
   – One fault block per message
   – Optional
   – Success: 200-299 (HttpBinding)
@@ -58,7 +59,7 @@ SOA – Service Oriented Architecture
     – <faultString>
     – <details>
     
-– WSDL
+### WSDL
   – Web Service Description Language
   – XML file describing everything about the service
   – “Contract” or “Endpoint”
@@ -82,7 +83,7 @@ SOA – Service Oriented Architecture
     – binding – specify protocol and data format for operations and messages
     – service – specify port address(es) of binding
     
-– Jax-WS – Java API for XML Web Services
+### Jax-WS – Java API for XML Web Services
   – This is to set up service providers + consumers
   – Annotation-based
   – Supported by open source framework Apache CXF (also supports other protocols)
@@ -97,7 +98,7 @@ SOA – Service Oriented Architecture
   – Literal: contents conform to user-defined xsd
   – Encoded: uses xsd datatypes but body doesn't need to conform to user-defined xsd
 
-– Rest Services
+## Rest Services
   – Representational State Transfer
   – Stateless interactions
   – Creating Web APIs
@@ -121,16 +122,16 @@ SOA – Service Oriented Architecture
   – No sensitive information in url (user name, password, id, etc)
   – Restrict Http verbs
   
-  – Http Methods
+  ### Http Methods
   – Get, Post, Put, Delete, Head, Options, Connect, Trace
   – Rest is highly opinionated, allowing us to write any behavior for a method
-  – Http Request
+  #### Http Request
     – Verb – Http Method
     – URI – Uniform Resource Identifier, identifies resource on server
     – Version – Http version
     – Header – Meta data, key-value pairs, formatting, other details
     – Body – Message content or resource representation
-  – Http Response
+  #### Http Response
     – Status – Indicates success or failure, between 100-599
     – Version
     – Header – Meta data, key-values (content length, timestamp, content type, etc)
